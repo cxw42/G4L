@@ -18,36 +18,42 @@ The goal is to provide access to OpenGL 3.3, including:
 
 Prototyping/visualizations/live coding/awesome
 
+## Installation
+
+### Ubuntu
+
+    $ sudo apt install -y libturbojpeg0-dev freeglut3-dev liblua5.1-0-dev lua5.1 libturbojpeg0-dev
+    $ CFLAGS="$(pkg-config --cflags --libs lua51)" make
 
 ## Example
 
     local g4l = require 'G4L'
-    
+
     g4l.initMode(g4l.screen.rgba, g4l.screen.double)
     g4l.clearColor(.05,.1,.3,.1)
-    
+
     local win = g4l.newWindow("G4L", 800,600)
-    
+
     function win.reshape(w,h)
         g4l.viewport(0,0, w,h)
     end
-    
+
     local frames = 0
     function win.update(dt)
         frames = frames + 1
     end
-    
+
     function win.draw()
         g4l.clear()
         win:swap()
     end
-    
+
     g4l.timer(.25, function()
         win:title('G4L -- FPS: ' .. (frames * 4))
         frames = 0
         return .25
     end)
-    
+
     g4l.run()
 
 ## API
@@ -92,7 +98,7 @@ Prototyping/visualizations/live coding/awesome
             * g4l.buffer.texture_buffer,
             * g4l.buffer.transform_feedback_buffer,
             * g4l.buffer.uniform_buffer,
-        
+
         `usage' is one of
             * g4l.buffer.static_draw (default),
             * g4l.buffer.static_read,
@@ -103,7 +109,7 @@ Prototyping/visualizations/live coding/awesome
             * g4l.buffer.dynamic_draw,
             * g4l.buffer.dynamic_read,
             * g4l.buffer.dynamic_copy
-        
+
         `element_type' is one of
             * g4l.buffer.byte,
             * g4l.buffer.ubyte,
@@ -113,7 +119,7 @@ Prototyping/visualizations/live coding/awesome
             * g4l.buffer.uint,
             * g4l.buffer.float (default),
             * g4l.buffer.double
-        
+
         and `elements' is a table of buffer elements.
 
     Example:
@@ -447,7 +453,7 @@ Corresponding to the g4l\_ and g4lUT\_ counterparts.
     equal
     notequal
     always
-    
+
     keep
     zero
     replace
@@ -463,7 +469,7 @@ Corresponding to the g4l\_ and g4lUT\_ counterparts.
     clamp_to_border
     mirrored_repeat
     repeat
-    
+
     nearest
     linear
 
@@ -476,7 +482,7 @@ Corresponding to the g4l\_ and g4lUT\_ counterparts.
     triangles
     triangle_stop
     triangle_fan
-    
+
     lines_adjacency
     line_strip_adjacency
     triangles_adjacency
